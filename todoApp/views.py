@@ -84,10 +84,23 @@ class TodoDetail(APIView):
         user = self.get_user(user_id)
         todo = self.get_todo(user, todo_id)
         
-        # content만 업데이트 허용
-        serializer = TodoSerializer(todo, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=False)
-        serializer.save()
+        if request.path.endswith('/check/'):
+            # is_checked만 업데이트
+            is_checked = request.data.get('is_checked')
+            todo.is_checked = is_checked
+            todo.save()
+        elif request.path.endswith('/reviews/'):
+            # emoji만 업데이트
+            emoji = request.data.get('emoji')
+            todo.emoji = emoji
+            todo.save()
+        else:
+            # 일반 PATCH (date, content 수정)
+            serializer = TodoSerializer(todo, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=False)
+            serializer.save()
+        # 직렬화
+        serializer = TodoSerializer(todo)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     # 투두 삭제
