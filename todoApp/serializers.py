@@ -6,6 +6,7 @@ class TodoSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)
     todo_id= serializers.IntegerField(source='id', read_only=True)
 
+    
     class Meta:
         model = Todo
         fields = [
@@ -16,3 +17,7 @@ class TodoSerializer(serializers.ModelSerializer):
             'is_checked',
             'emoji',
         ]
+        extra_kwargs = {
+            'date': {'required': False},
+            'content': {'required': False},
+        }
