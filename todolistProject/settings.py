@@ -86,12 +86,8 @@ WSGI_APPLICATION = 'todolistProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'todolist_db',
-        'USER': 'root',
-        'PASSWORD': '비밀',
-        'HOST': 'ec2-3-39-193-200.ap-northeast-2.compute.amazonaws.com',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
