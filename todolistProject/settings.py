@@ -86,8 +86,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todolist_db',
         'USER': 'root',
-        'PASSWORD': '비밀',
-        'HOST': 'ec2-3-39-193-200.ap-northeast-2.compute.amazonaws.com',
+        'PASSWORD': '011825809196wj!',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
